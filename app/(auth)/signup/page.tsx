@@ -3,6 +3,8 @@
 import React, { useState } from 'react'
 import { authenticateUser } from '../actions'
 
+
+
 export default function AuthPage() {
   const [isSignUp, setIsSignUp] = useState(true)
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
@@ -37,7 +39,7 @@ export default function AuthPage() {
           </p>
         </div>
 
-        <form className="mt-8 space-y-4" onSubmit={handleSubmit}>
+        <form action={async (formData) => { await authenticateUser(formData); }} className="..." >
           {errorMsg && (
             <div className="p-3 text-sm text-red-400 bg-red-950/50 rounded-lg border border-red-900/50">
               {errorMsg}
