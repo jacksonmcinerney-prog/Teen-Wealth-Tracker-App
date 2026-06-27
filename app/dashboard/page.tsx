@@ -83,7 +83,7 @@ export default async function DashboardPage() {
                 </div>
                 
                 {/* Clear Goal Action Button */}
-                <form action={deleteGoal}>
+                <form action={async (formData) => { await deleteGoal(formData); }}>
                   <input type="hidden" name="goalId" value={activeGoal.id} />
                   <button 
                     type="submit" 
@@ -157,7 +157,7 @@ export default async function DashboardPage() {
               <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">
                 Set a Savings Goal
               </h3>
-              <form action={addGoal} className="space-y-3 text-sm text-slate-200">
+              <form action={async (formData) => { await addGoal(formData); }} className="space-y-3 text-sm text-slate-200">
                 <input 
                   name="title" 
                   type="text" 
@@ -190,7 +190,7 @@ export default async function DashboardPage() {
             <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-4">
               Log Transaction
             </h3>
-            <form action={addTransaction} className="space-y-3 text-sm text-slate-200">
+            <form action={async (formData) => { await addTransaction(formData); }} className="space-y-3 text-sm text-slate-200">
               <div>
                 <input 
                   name="title" 

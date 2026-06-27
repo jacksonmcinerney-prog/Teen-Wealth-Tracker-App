@@ -1,5 +1,5 @@
 import React from 'react'
-import { createServerSideClient } from '../lib/supabase/server'
+import { createServerSideClient } from '../../../lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { addTransaction } from '../../dashboard/actions'
 
@@ -61,7 +61,7 @@ export default async function DashboardPage() {
           <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-4">
             Log Transaction
           </h3>
-          <form action={addTransaction} className="space-y-3 text-sm text-slate-200">
+          <form action={async (formData) => { await addTransaction(formData); }} className="space-y-3 text-sm text-slate-200">
             <div>
               <input 
                 name="title" 

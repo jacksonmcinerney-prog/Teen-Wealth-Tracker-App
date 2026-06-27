@@ -57,8 +57,9 @@ export default function CategoryCharts({ transactionList }: ChartProps) {
   dataKey="value"
   labelLine={false}
   label={({ name, value, percent }) => {
-    const shortName = name.split(' ')[0] || name
-    return `${shortName} £${value.toFixed(0)} (${(percent * 100).toFixed(0)}%)`
+    const shortName = name ? name.split(' ')[0] : 'Other';
+    const displayPercent = percent ? (percent * 100).toFixed(0) : '0';
+return `${shortName} £${value.toFixed(0)} (${displayPercent}%)`
   }}
 >
   {expenseData.map((entry, index) => (
@@ -67,9 +68,9 @@ export default function CategoryCharts({ transactionList }: ChartProps) {
 </Pie>
                 <Tooltip 
                   contentStyle={{ backgroundColor: '#020617', borderColor: '#1e293b', borderRadius: '12px', color: '#f59e0b' }}
-                  formatter={(value: number) => [`£${value.toFixed(2)}`, 'Amount']}
-                />
-                <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', bottom: 10 }} />
+                  formatter={(value: any) => [`£${Number(value || 0).toFixed(2)}`, 'Amount']}
+                  />
+                 <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', bottom: 10 }} />
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -97,8 +98,9 @@ export default function CategoryCharts({ transactionList }: ChartProps) {
   dataKey="value"
   labelLine={false}
   label={({ name, value, percent }) => {
-    const shortName = name.split(' ')[0] || name
-    return `${shortName} £${value.toFixed(0)} (${(percent * 100).toFixed(0)}%)`
+    const shortName = name ? name.split(' ')[0] : 'Other';
+    const displayPercent = percent ? (percent * 100).toFixed(0) : '0';
+return `${shortName} £${value.toFixed(0)} (${displayPercent}%)`
   }}
 >
   {incomeData.map((entry, index) => (
@@ -107,7 +109,7 @@ export default function CategoryCharts({ transactionList }: ChartProps) {
 </Pie>
                 <Tooltip 
                   contentStyle={{ backgroundColor: '#020617', borderColor: '#1e293b', borderRadius: '12px', color: '#10b981' }}
-                  formatter={(value: number) => [`£${value.toFixed(2)}`, 'Amount']}
+                  formatter={(value: any) => [`£${Number(value || 0).toFixed(2)}`, 'Amount']}
                 />
                 <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', bottom: 10 }} />
               </PieChart>
